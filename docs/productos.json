@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "name": "Budín de vainilla con chips de chocolate",
+    "file": "0100-budin_vainilla_con_chips.webp",
+    "description": "Budín artesanal de vainilla con chips de chocolate semiamargo, elaborado con harinas naturales sin gluten. Textura húmeda y esponjosa, ideal para acompañar con café o té.\nPresentación: 740 g",
+    "price": 16500
+  },
+  {
+    "id": "2",
+    "name": "Budín de cacao amargo",
+    "file": "0200-budin_cacao_amargo.webp",
+    "description": "Budín artesanal elaborado con cacao amargo de primera calidad, logrando un sabor intenso y equilibrado. Textura húmeda y esponjosa, perfecto para los amantes del chocolate.\nPresentación: 700 g",
+    "price": 16000
+  },
+  {
+    "id": "3",
+    "name": "Budín de limón",
+    "file": "0300-budin_limon.webp",
+    "description": "Budín artesanal de limón, elaborado con harinas naturales sin gluten. Cubierto con un glasé suave y decorado con ralladura de limón que aporta frescura y un toque cítrico irresistible. Textura húmeda y esponjosa, ideal para acompañar la merienda.\nPresentación: 740 g",
+    "price": 15000
+  },
+  {
+    "id": "4",
+    "name": "Brownie",
+    "file": "0400-brownie.webp",
+    "description": "Intenso, húmedo y bien chocolatoso 🍫\nUn brownie artesanal, de textura suave y sabor profundo.",
+    "price": 23000
+  },
+  {
+    "id": "5",
+    "name": "Cuadraditos de limón",
+    "file": "0500-cuadraditos_de_limon.webp",
+    "description": "Suaves y húmedos, con un delicado sabor a limón y una cobertura de glaseado bien blanco que aporta el toque justo de dulzura.",
+    "price": 7000
+  },
+  {
+    "id": "6",
+    "name": "Budín de naranja",
+    "file": "0600-budin_de_naranja.webp",
+    "description": "Budín artesanal de naranja, elaborado con harinas naturales sin gluten. Cubierto con un glasé suave y decorado con ralladura de naranja que aporta frescura y un toque cítrico irresistible. Textura húmeda y esponjosa, ideal para acompañar la merienda.\nPresentación: 740 g",
+    "price": 15000
+  },
+  {
+    "id": "7",
+    "name": "Budín marmolado",
+    "file": "0700-budin_marmolado.webp",
+    "description": "Budín artesanal con un delicado marmolado de vainilla y cacao amargo, que combina suavidad y sabor intenso en cada porción textura húmeda y esponjosa, elaborado con harinas naturales sin gluten. \nPresentación: 700 g",
+    "price": 14000
+  },
+  {
+    "id": "8",
+    "name": "Budín de vainilla",
+    "file": "0800-budin_de_vainilla.webp",
+    "description": "Budín artesanal de vainilla, elaborado con harinas naturales sin gluten. Textura suave y esponjosa,con un sabor clásico y delicado que lo convierte en una opción ideal para cualquier momento del día. \nPresentación: 700 g",
+    "price": 13000
+  }
+]

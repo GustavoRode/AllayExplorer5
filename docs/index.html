@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta name="description" content="Allay: pastelería artesanal sin gluten. Hecho con tiempo, ingredientes nobles y mucho amor.">
+    <title>Allay — Pastelería artesanal sin gluten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement">
+      <span>Hecho a mano, para disfrutar sin apuro</span>
+      <span class="announcement-dot" aria-hidden="true">✳</span>
+      <span>100% libre de gluten</span>
+    </div>
+
+    <header class="site-header">
+      <a class="wordmark" href="#inicio" aria-label="Allay, inicio"><img class="wordmark-logo" src="./images/Allay_logo-04_f6f2e9.webp" alt="Allay, pastelería sin gluten"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+        <span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="#productos">La vitrina</a>
+        <a href="#nosotros">Nuestra historia</a>
+        <a href="#proceso">Lo que nos mueve</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="https://wa.me/541168854910" target="_blank" rel="noreferrer" aria-label="Escribinos por WhatsApp">
+          <svg class="header-social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.4 11.7a8.4 8.4 0 0 1-12.4 7.4L3.6 20.4l1.3-4.2a8.4 8.4 0 1 1 15.5-4.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.7 8.1c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .3-.2 1.1-.6 1.4-.4.4-1 .6-1.6.5-1.1-.2-2.3-.8-3.5-1.8-1-.8-1.8-1.9-2.2-2.9-.4-.9-.4-1.8 0-2.4.2-.3.4-.5.4-.6Z" fill="currentColor"/>
+          </svg>
+          11-6885-4910
+        </a>
+        <a class="header-instagram" href="https://www.instagram.com/allay_singluten?igsh=eGVkNng0OTg4MGty" target="_blank" rel="noreferrer">
+          <svg class="header-social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Pastelería artesanal · Sin gluten</p>
+          <h1>Lo rico de<br>siempre, <em>para</em><br><em>todos.</em></h1>
+          <p class="hero-description">Pequeños placeres, hechos con ingredientes nobles y mucho cariño. Sin gluten, con todo el sabor.</p>
+          <a class="button button-dark" href="#productos">Descubrí la vitrina <span aria-hidden="true">↗</span></a>
+          <div class="hero-note">
+            <span class="note-star" aria-hidden="true">✳</span>
+            <span>Un mimo para<br>cada momento</span>
+          </div>
+          <div class="hero-index">01 <span></span> 03</div>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=85" alt="Pan artesanal recién horneado sobre una mesa de madera">
+          <div class="image-label"><span>Horneado con amor</span><span aria-hidden="true">✳</span></div>
+          <div class="image-stamp" aria-label="Sin gluten, con todo el sabor">
+            <span class="stamp-top">SIN GLUTEN</span>
+            <span class="stamp-leaf" aria-hidden="true">✳</span>
+            <span class="stamp-bottom">CON TODO EL SABOR</span>
+          </div>
+        </div>
+        <div class="hero-side-note">PASTELERÍA ARTESANAL · HECHA CON CARIÑO</div>
+      </section>
+
+      <section class="ticker" aria-label="Nuestros valores">
+        <div class="ticker-track">
+          <span>Sin gluten</span><b>✳</b><span>Con amor</span><b>✳</b><span>Hecho a mano</span><b>✳</b><span>Para compartir</span><b>✳</b>
+          <span aria-hidden="true">Sin gluten</span><b aria-hidden="true">✳</b><span aria-hidden="true">Con amor</span><b aria-hidden="true">✳</b><span aria-hidden="true">Hecho a mano</span><b aria-hidden="true">✳</b><span aria-hidden="true">Para compartir</span><b aria-hidden="true">✳</b>
+        </div>
+      </section>
+
+      <section class="products section-wrap" id="productos">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> Hecho hoy, para disfrutar hoy</p>
+            <h2>De nuestra cocina<br><em>a tu mesa.</em></h2>
+          </div>
+          <a class="text-link" href="./productos.html">Ver toda la vitrina <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="product-grid" data-products data-limit="4" aria-live="polite" aria-busy="true"></div>
+      </section>
+
+      <section class="story" id="nosotros">
+        <div class="story-image">
+          <!-- <img src="https://images.unsplash.com/photo-1556217477-d325251ece38?auto=format&fit=crop&w=1200&q=85" alt="Manos preparando masa en una cocina artesanal" loading="lazy"> -->
+          <img src ="https://res.cloudinary.com/dwvi0c49z/image/upload/v1791315314/WhatsApp_Image_2026-10-06_at_16.08.29_tu5poj.jpg" alt="Cocina artesanal" loading="lazy">
+          <span class="story-image-caption">Cada detalle importa</span>
+        </div>
+        <div class="story-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Un origen sencillo</p>
+          <h2>Creemos en el<br>poder de <em>compartir.</em></h2>
+          <p class="story-description">Allay nació de una idea simple: que nadie se quede afuera de los pequeños placeres. Por eso amasamos, probamos y horneamos con paciencia, cuidando cada ingrediente y cada detalle.</p>
+          <a class="text-link" href="#proceso">Conocé nuestra historia <span aria-hidden="true">↗</span></a>
+          <span class="story-doodle" aria-hidden="true">✳</span>
+        </div>
+      </section>
+
+      <section class="promise section-wrap" id="proceso">
+        <div class="promise-heading">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Lo hacemos así</p>
+          <h2>Simple, rico<br>y <em>de verdad.</em></h2>
+        </div>
+        <div class="promise-list">
+          <article><span class="promise-number">01</span><div><h3>Siempre sin gluten</h3><p>Elaboramos recetas sin gluten y cuidamos cada detalle, desde la selección de ingredientes.</p></div><span class="promise-icon" aria-hidden="true">↗</span></article>
+          <article><span class="promise-number">02</span><div><h3>Ingredientes nobles</h3><p>Elegimos materias primas reales, de estación y de origen cercano.</p></div><span class="promise-icon" aria-hidden="true">↗</span></article>
+          <article><span class="promise-number">03</span><div><h3>Hecho a mano</h3><p>En tandas pequeñas, con tiempo, cuidado y ganas de compartir.</p></div><span class="promise-icon" aria-hidden="true">↗</span></article>
+        </div>
+      </section>
+
+      <section class="contact" id="contacto">
+        <div class="contact-mark" aria-hidden="true">✳</div>
+        <p class="eyebrow">Algo rico está por pasar</p>
+        <h2>¿Compartimos<br><em>algo rico?</em></h2>
+        <p>Escribinos y armamos algo lindo para tu mesa.</p>
+        <a class="button button-light" href="mailto:hola@allay.com">Hablemos <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark footer-wordmark" href="#inicio" aria-label="Allay, volver al inicio"><img class="wordmark-logo" src="./images/Allay_logo-04_f6f2e9.webp" alt="Allay, pastelería sin gluten"></a>
+      <p>Hecho con amor, sin gluten. <span>© <span id="year">2026</span> Allay</span></p>
+      <div class="footer-actions">
+        <a class="footer-social" href="https://wa.me/541168854910" target="_blank" rel="noreferrer" aria-label="Escribinos por WhatsApp">
+          <svg class="footer-social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.4 11.7a8.4 8.4 0 0 1-12.4 7.4L3.6 20.4l1.3-4.2a8.4 8.4 0 1 1 15.5-4.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.7 8.1c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .3-.2 1.1-.6 1.4-.4.4-1 .6-1.6.5-1.1-.2-2.3-.8-3.5-1.8-1-.8-1.8-1.9-2.2-2.9-.4-.9-.4-1.8 0-2.4.2-.3.4-.5.4-.6Z" fill="currentColor"/>
+          </svg>
+          11-6885-4910
+        </a>
+        <a class="footer-social" href="https://www.instagram.com/allay_singluten?igsh=eGVkNng0OTg4MGty" target="_blank" rel="noreferrer">
+          <svg class="footer-social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
