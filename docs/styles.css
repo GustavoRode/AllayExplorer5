@@ -92,15 +92,24 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .product-meta span { color: #888579; font-size: 8px; letter-spacing: .08em; }
 .product-card > p { margin: 7px 0 0; color: #777468; font-size: 10px; line-height: 1.6; }
 
-.story { min-height: 555px; display: grid; grid-template-columns: 1fr 1fr; background: #e8e4d9; }
-.story-image { min-height: 555px; position: relative; }
-.story-image img { height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center; }
-.story-image-caption { position: absolute; left: 25px; bottom: 22px; color: white; font-family: var(--serif); font-size: 15px; font-style: italic; }
-.story-copy { min-height: 555px; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 65px 11% 65px 13%; }
-.story-copy h2 { margin: 22px 0 20px; font-size: clamp(43px, 5vw, 67px); line-height: 1.03; }
-.story-description { max-width: 380px; margin-bottom: 28px; color: #68665b; font-size: 12px; line-height: 1.9; }
-.story-copy .text-link { align-self: flex-start; }
-.story-doodle { position: absolute; right: 10%; bottom: 11%; color: #a05e3e; font-size: 43px; }
+.story { padding: 105px 6.25% 100px; background: #e8e4d9; }
+.story-container { max-width: 1100px; margin: 0 auto; }
+.story-header { max-width: 720px; margin: 0 auto 76px; text-align: center; }
+.story-header .eyebrow { justify-content: center; }
+.story-title { margin: 20px 0 18px; font-size: clamp(43px, 5.5vw, 70px); line-height: 1.04; }
+.story-intro { margin: 0; color: #68665b; font-size: 13px; line-height: 1.9; }
+.story-intro em { color: var(--ink); font-family: var(--serif); font-size: 1.12em; }
+.story-act { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 82px); align-items: center; margin-bottom: 76px; }
+.story-act-reverse .story-act-text { order: 2; }
+.story-act-reverse .story-act-media { order: 1; }
+.story-act-number { display: block; margin-bottom: 13px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .17em; }
+.story-act h3 { margin: 0 0 15px; font-family: var(--serif); font-size: clamp(27px, 3.2vw, 39px); font-weight: 500; letter-spacing: -.035em; line-height: 1.12; }
+.story-act-text p { max-width: 470px; margin: 0; color: #68665b; font-size: 12px; line-height: 1.9; }
+.story-act-media { min-width: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #d8d1c2; }
+.story-act-media img { width: 100%; height: 100%; object-fit: cover; }
+.story-footer { margin-top: 10px; text-align: center; }
+.story-footer p { margin: 0 0 17px; color: #68665b; font-family: var(--serif); font-size: 16px; font-style: italic; }
+.story-footer .text-link { padding-bottom: 7px; }
 
 .promise { padding-top: 118px; padding-bottom: 125px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 9%; }
 .promise-heading h2 { font-size: clamp(43px, 5vw, 62px); }
@@ -144,8 +153,8 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .hero-side-note { display: none; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .product-image { height: clamp(220px, 37vw, 350px); }
-  .story, .story-image, .story-copy { min-height: 470px; }
-  .story-copy { padding-left: 9%; padding-right: 8%; }
+  .story { padding-top: 82px; padding-bottom: 78px; }
+  .story-act { gap: 30px; margin-bottom: 58px; }
   .promise { gap: 5%; }
 }
 
@@ -192,11 +201,15 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .product-meta h3 { font-size: 14px; }
   .product-meta span { font-size: 7px; }
   .product-card > p { font-size: 9px; }
-  .story { grid-template-columns: 1fr; }
-  .story-image { min-height: 370px; }
-  .story-copy { min-height: 410px; padding: 62px 8% 68px; }
-  .story-copy h2 { font-size: 52px; }
-  .story-doodle { right: 8%; bottom: 6%; font-size: 33px; }
+  .story { padding: 68px 6% 72px; }
+  .story-header { margin-bottom: 48px; }
+  .story-title { font-size: clamp(42px, 12vw, 56px); }
+  .story-intro { font-size: 12px; }
+  .story-act { grid-template-columns: 1fr; gap: 19px; margin-bottom: 45px; }
+  .story-act-reverse .story-act-text, .story-act-reverse .story-act-media { order: initial; }
+  .story-act h3 { font-size: 30px; }
+  .story-act-text p { font-size: 11px; }
+  .story-act-media { aspect-ratio: 4 / 3; }
   .promise { grid-template-columns: 1fr; gap: 36px; padding-top: 78px; padding-bottom: 83px; }
   .promise-heading h2 { margin-top: 15px; }
   .promise-list article { min-height: 105px; grid-template-columns: 30px 1fr 20px; gap: 10px; }
