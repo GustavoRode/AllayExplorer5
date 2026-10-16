@@ -112,14 +112,20 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .story-footer p { margin: 0 0 17px; color: #68665b; font-family: var(--serif); font-size: 16px; font-style: italic; }
 .story-footer .text-link { padding-bottom: 7px; }
 
-.promise { padding-top: 118px; padding-bottom: 125px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 9%; }
-.promise-heading h2 { font-size: clamp(43px, 5vw, 62px); }
-.promise-list article { min-height: 112px; display: grid; grid-template-columns: 44px 1fr 25px; gap: 15px; align-items: center; border-bottom: 1px solid var(--line); }
-.promise-list article:first-child { border-top: 1px solid var(--line); }
-.promise-number { align-self: start; padding-top: 29px; color: #8c897d; font-size: 9px; letter-spacing: .1em; }
-.promise-list h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 18px; font-weight: 500; }
-.promise-list p { margin: 0; color: #777468; font-size: 10px; line-height: 1.6; }
-.promise-icon { color: var(--green); font-size: 15px; }
+.values { padding: 112px 6.25% 119px; background: var(--cream); }
+.values-container { max-width: 1100px; margin: 0 auto; }
+.values-header { max-width: 680px; margin: 0 auto 48px; text-align: center; }
+.values-header .eyebrow { justify-content: center; }
+.values-title { margin: 19px 0 15px; font-size: clamp(43px, 5vw, 62px); line-height: 1.04; }
+.values-intro { max-width: 580px; margin: 0 auto; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.values-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.value-card { padding: 27px 24px 29px; border: 1px solid var(--line); background: var(--paper); transition: transform .25s ease, box-shadow .25s ease; }
+.value-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -24px rgba(39, 37, 30, .4); }
+.value-icon { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 24px; background: #e8e4d9; color: var(--green); }
+.value-icon svg { width: 22px; height: 22px; }
+.value-title { min-height: 2.5em; margin: 0 0 11px; font-family: var(--serif); font-size: clamp(19px, 2vw, 24px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+.value-body { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.values-closing { max-width: 520px; margin: 40px auto 0; color: var(--green); font-family: var(--serif); font-size: clamp(18px, 2.2vw, 23px); font-style: italic; text-align: center; }
 
 .contact { padding: 84px 20px 91px; position: relative; overflow: hidden; background: var(--green); color: #f8f3e8; text-align: center; }
 .contact .eyebrow { justify-content: center; color: #e2ce9e; }
@@ -156,7 +162,10 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .product-image { height: clamp(220px, 37vw, 350px); }
   .story { padding-top: 82px; padding-bottom: 78px; }
   .story-act { gap: 30px; margin-bottom: 58px; }
-  .promise { gap: 5%; }
+  .values { padding-top: 82px; padding-bottom: 88px; }
+  .values-grid { grid-template-columns: 1fr; gap: 12px; }
+  .value-card { padding: 23px; }
+  .value-title { min-height: 0; }
 }
 
 @media (max-width: 640px) {
@@ -191,7 +200,7 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .section-wrap { padding-left: 6%; padding-right: 6%; }
   .products { padding-top: 75px; padding-bottom: 77px; }
   .section-heading { display: block; margin-bottom: 29px; }
-  .section-heading h2, .promise h2 { font-size: 48px; }
+  .section-heading h2 { font-size: 48px; }
   .section-heading .text-link { margin-top: 22px; }
   .catalog-products { padding-top: 62px; padding-bottom: 78px; }
   .catalog-grid .product-image { height: clamp(200px, 42vw, 330px); }
@@ -212,11 +221,13 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .story-act-text p { font-size: 11px; }
   .story-act-media { aspect-ratio: 4 / 3; }
   .story-act-media.story-act-media-portrait { aspect-ratio: 3 / 4; }
-  .promise { grid-template-columns: 1fr; gap: 36px; padding-top: 78px; padding-bottom: 83px; }
-  .promise-heading h2 { margin-top: 15px; }
-  .promise-list article { min-height: 105px; grid-template-columns: 30px 1fr 20px; gap: 10px; }
-  .promise-list h3 { font-size: 17px; }
-  .promise-list p { max-width: 270px; }
+  .values { padding: 72px 6% 78px; }
+  .values-header { margin-bottom: 34px; }
+  .values-title { font-size: 48px; }
+  .value-card { padding: 21px; }
+  .value-icon { margin-bottom: 18px; }
+  .value-title { font-size: 21px; }
+  .values-closing { margin-top: 30px; }
   .contact { padding: 72px 18px 75px; }
   .contact h2 { font-size: 62px; }
   .contact-mark { right: -6%; top: -5px; font-size: 120px; }
