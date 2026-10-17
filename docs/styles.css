@@ -229,7 +229,7 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .value-title { font-size: 21px; }
   .values-closing { margin-top: 30px; }
   .contact { padding: 72px 18px 75px; }
-  .contact h2 { font-size: 62px; }
+  .contact h2 { font-size: clamp(34px, 10.5vw, 50px); }
   .contact-mark { right: -6%; top: -5px; font-size: 120px; }
   .site-footer { min-height: 83px; padding: 18px 6%; display: grid; grid-template-columns: 1fr auto; row-gap: 12px; }
   .footer-wordmark { font-size: 26px; }
