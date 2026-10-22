@@ -31,8 +31,9 @@ function createProductCard(product, index, total) {
   imageLink.setAttribute('aria-label', `Consultar por ${product.name}`);
 
   const image = document.createElement('img');
-  image.src = `./images/${encodeURIComponent(product.file)}`;
+  image.src = product.href;
   image.alt = product.name;
+  image.dataset.displayName = product.displayName;
   image.loading = 'lazy';
   imageLink.append(image);
 
@@ -79,7 +80,8 @@ async function loadProducts() {
 
     const products = await response.json();
     if (!Array.isArray(products) || products.some((product) =>
-      !product || typeof product.name !== 'string' || typeof product.file !== 'string' ||
+      !product || typeof product.name !== 'string' ||
+      typeof product.displayName !== 'string' || typeof product.href !== 'string' ||
       typeof product.description !== 'string' || !Number.isFinite(product.price)
     )) {
       throw new Error('El catálogo tiene un formato inválido');
