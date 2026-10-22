@@ -94,5 +94,13 @@
     "href": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1792641441/ALF-2000-alfajores_de_maicena_qrgnul.webp",
     "description": "Alfajores de maicena sin gluten, diámetro aprox 5 cm, suaves y delicados, rellenos de dulce de leche y terminados con coco rallado. \nDisponibles también  en tamaño de 7 cm de diámetro",
     "price": 7000
+  },
+  {
+    "id": "3050",
+    "name": "Pepas por 6 unidades",
+    "displayName": "GAL-3050-Pepas_rpd7lj",
+    "href": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1792679699/GAL-3050-Pepas_rpd7lj.webp",
+    "description": "Pepas sin gluten, tiernas y caseras, rellenas de membrillo, batata o dulce de leche. \nPresentación: 6 unidades",
+    "price": 6000
   }
 ]
