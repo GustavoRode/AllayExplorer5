@@ -27,8 +27,12 @@ function createProductCard(product, index, total) {
 
   const imageLink = document.createElement('a');
   imageLink.className = 'product-image';
-  imageLink.href = './#contacto';
+  const whatsappUrl = new URL('https://wa.me/541168854910');
+  whatsappUrl.searchParams.set('text', product.msgCTA);
+  imageLink.href = whatsappUrl.toString();
   imageLink.setAttribute('aria-label', `Consultar por ${product.name}`);
+  imageLink.target = '_blank';
+  imageLink.rel = 'noopener noreferrer';
 
   const image = document.createElement('img');
   image.src = product.href;
@@ -75,14 +79,15 @@ async function loadProducts() {
   if (!productGrids.length) return;
 
   try {
-    const response = await fetch('./productos.json');
+    const response = await fetch('./products.json');
     if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
 
     const products = await response.json();
     if (!Array.isArray(products) || products.some((product) =>
       !product || typeof product.name !== 'string' ||
       typeof product.displayName !== 'string' || typeof product.href !== 'string' ||
-      typeof product.description !== 'string' || !Number.isFinite(product.price)
+      typeof product.description !== 'string' || !Number.isFinite(product.price) ||
+      typeof product.msgCTA !== 'string'
     )) {
       throw new Error('El catálogo tiene un formato inválido');
     }
