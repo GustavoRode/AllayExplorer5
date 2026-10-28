@@ -127,6 +127,13 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .value-body { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
 .values-closing { max-width: 520px; margin: 40px auto 0; color: var(--green); font-family: var(--serif); font-size: clamp(18px, 2.2vw, 23px); font-style: italic; text-align: center; }
 
+.coverage { padding: 78px 6.25%; background: #e8e4d9; text-align: center; }
+.coverage-container { max-width: 760px; margin: 0 auto; }
+.coverage .eyebrow { justify-content: center; }
+.coverage-title { margin: 19px 0 18px; font-size: clamp(40px, 5vw, 58px); line-height: 1.04; }
+.coverage-copy { margin: 0 auto; color: #68665b; font-size: 13px; line-height: 1.9; }
+.coverage-copy strong { color: var(--ink); }
+
 .contact { padding: 84px 20px 91px; position: relative; overflow: hidden; background: var(--green); color: #f8f3e8; text-align: center; }
 .contact .eyebrow { justify-content: center; color: #e2ce9e; }
 .contact h2 { margin: 17px 0 13px; font-size: clamp(54px, 7vw, 83px); line-height: .99; }
@@ -228,6 +235,7 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
   .value-icon { margin-bottom: 18px; }
   .value-title { font-size: 21px; }
   .values-closing { margin-top: 30px; }
+  .coverage { padding: 62px 6%; }
   .contact { padding: 72px 18px 75px; }
   .contact h2 { font-size: clamp(34px, 10.5vw, 50px); }
   .contact-mark { right: -6%; top: -5px; font-size: 120px; }
