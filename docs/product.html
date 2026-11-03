@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta name="description" content="Conocé los detalles de nuestros productos artesanales sin gluten.">
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="Producto — Allay">
+    <meta property="og:description" content="Conocé los detalles de nuestros productos artesanales sin gluten.">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <title>Producto — Allay</title>
+    <link rel="canonical" href="./product.html">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
+    <script src="./product-detail.js" defer></script>
+    <script id="product-structured-data" type="application/ld+json"></script>
+  </head>
+  <body class="shop-page">
+    <div class="announcement">
+      <span>Hecho a mano, para disfrutar sin apuro</span>
+      <span class="announcement-dot" aria-hidden="true">✳</span>
+      <span>100% libre de gluten</span>
+    </div>
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="Allay, inicio"><img class="wordmark-logo" src="./images/Allay_logo-04_f6f2e9.webp" alt="Allay, pastelería sin gluten"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./products.html">La vitrina</a>
+        <a href="./">Inicio</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="https://wa.me/541168854910" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </header>
+    <main>
+      <section class="shop-section section-wrap">
+        <a class="shop-back text-link" href="./products.html">← Volver a la vitrina</a>
+        <div class="product-detail" data-product-detail aria-live="polite" aria-busy="true">
+          <p class="catalog-error">Cargando producto…</p>
+        </div>
+        <section class="product-recommendations" data-product-recommendations aria-labelledby="product-recommendations-title" hidden>
+          <div class="product-recommendations-heading">
+            <h2 id="product-recommendations-title">También te puede gustar</h2>
+            <p>Otros productos artesanales que suelen elegirse junto a este.</p>
+          </div>
+          <div class="product-grid catalog-grid" data-recommendation-grid></div>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer catalog-page">
+      <a class="wordmark footer-wordmark" href="./" aria-label="Allay, volver al inicio"><img class="wordmark-logo" src="./images/Allay_logo-04_f6f2e9.webp" alt="Allay, pastelería sin gluten"></a>
+      <p>Hecho con amor, sin gluten. <span>© <span id="year">2026</span> Allay</span></p>
+      <div class="footer-actions"><a class="footer-social" href="./products.html">La vitrina</a></div>
+    </footer>
+  </body>
+</html>
