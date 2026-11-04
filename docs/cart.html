@@ -45,7 +45,9 @@
           </div>
           <div class="cart-order-summary-total">
             <p data-cart-quantity></p>
-            <p class="cart-order-total">Total: <strong data-cart-order-total></strong></p>
+            <p class="cart-order-line">Subtotal: <strong data-cart-subtotal></strong></p>
+            <p class="cart-order-line">Envío: <strong data-cart-shipping></strong></p>
+            <p class="cart-order-total">Total estimado: <strong data-cart-estimated-total></strong></p>
             <p class="cart-order-summary-note">Revisá tu pedido antes de enviarlo.</p>
           </div>
           <ul class="cart-order-benefits" aria-label="Características del pedido">
@@ -61,23 +63,10 @@
             <section class="delivery-section" aria-labelledby="delivery-title">
               <h2 id="delivery-title">🚚 Información de entrega</h2>
               <p class="delivery-intro">Envío gratuito en:</p>
-              <ul class="delivery-free-areas">
-                <li>Villa Urquiza</li>
-                <li>Saavedra</li>
-                <li>Belgrano</li>
-                <li>Villa Ortúzar</li>
-                <li>Parque Chas</li>
-                <li>Villa Pueyrredón</li>
-              </ul>
+              <ul class="delivery-free-areas" data-delivery-free-areas></ul>
               <label for="delivery-neighborhood">¿En qué barrio querés recibir tu pedido?</label>
               <select id="delivery-neighborhood" name="delivery-neighborhood">
                 <option value="">Seleccionar barrio</option>
-                <option>Villa Urquiza</option>
-                <option>Saavedra</option>
-                <option>Belgrano</option>
-                <option>Villa Ortúzar</option>
-                <option>Parque Chas</option>
-                <option>Villa Pueyrredón</option>
                 <option>Palermo</option>
                 <option>Colegiales</option>
                 <option>Chacarita</option>

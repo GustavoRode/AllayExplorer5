@@ -191,8 +191,10 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .cart-order-summary-header .eyebrow { margin-bottom: 8px; }
 .cart-order-summary-header h2 { margin: 0; font-family: var(--serif); font-size: 30px; font-weight: 500; }
 .cart-order-summary-total p { margin: 0; color: var(--muted); font-size: 13px; }
-.cart-order-summary-total .cart-order-total { margin-top: 6px; color: var(--ink); font-size: 15px; }
-.cart-order-total strong { color: var(--green); font-size: 21px; }
+.cart-order-summary-total .cart-order-line { display: flex; justify-content: space-between; gap: 12px; margin-top: 7px; color: var(--muted); font-size: 12px; }
+.cart-order-line strong { color: var(--ink); font-weight: 600; }
+.cart-order-summary-total .cart-order-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line); color: var(--ink); font-size: 14px; font-weight: 700; }
+.cart-order-total strong { color: var(--green); font-size: 18px; }
 .cart-order-summary-total .cart-order-summary-note { margin-top: 7px; color: var(--muted); font-size: 11px; }
 .cart-order-benefits { display: grid; gap: 7px; margin: 0; padding: 0; color: var(--green); font-size: 11px; list-style: none; }
 .cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; }
@@ -215,6 +217,7 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .delivery-section select { width: 100%; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); font: inherit; font-size: 12px; }
 .delivery-section select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 .delivery-feedback { min-height: 17px; margin: 8px 0 0; color: var(--green); font-size: 11px; line-height: 1.5; }
+.delivery-feedback.has-cost { color: var(--muted); }
 .whatsapp-order { width: 100%; min-height: 56px; justify-content: center; gap: 9px; border: 0; background: var(--green); color: #fffdf6; font-size: 12px; line-height: 1.45; text-align: center; cursor: pointer; }
 .whatsapp-order:hover { background: var(--ink); }
 .whatsapp-order span { font-size: 18px; }

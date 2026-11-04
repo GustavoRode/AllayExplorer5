@@ -1,28 +1,81 @@
-const cartItemsContainer = document.querySelector('[data-cart-items]');
-const cartSummary = document.querySelector('[data-cart-summary]');
-const cartOrderSummary = document.querySelector('[data-cart-order-summary]');
-const cartOrderQuantity = document.querySelector('[data-cart-quantity]');
-const cartOrderTotal = document.querySelector('[data-cart-order-total]');
-const whatsappOrderButton = document.querySelector('.whatsapp-order');
-const deliveryNeighborhood = document.querySelector('#delivery-neighborhood');
-const deliveryFeedback = document.querySelector('[data-delivery-feedback]');
-const DELIVERY_STORAGE_KEY = 'allay-delivery-neighborhood';
-const freeDeliveryNeighborhoods = new Set([
+const FREE_SHIPPING_NEIGHBORHOODS = [
   'Villa Urquiza',
   'Saavedra',
   'Belgrano',
   'Villa Ortúzar',
   'Parque Chas',
   'Villa Pueyrredón'
-]);
+];
+const FIXED_SHIPPING_COST = 6800;
+const DELIVERY_STORAGE_KEY = 'allay-delivery-neighborhood';
+
+const cartItemsContainer = document.querySelector('[data-cart-items]');
+const cartSummary = document.querySelector('[data-cart-summary]');
+const cartOrderSummary = document.querySelector('[data-cart-order-summary]');
+const cartOrderQuantity = document.querySelector('[data-cart-quantity]');
+const cartOrderSubtotal = document.querySelector('[data-cart-subtotal]');
+const cartOrderShipping = document.querySelector('[data-cart-shipping]');
+const cartOrderEstimatedTotal = document.querySelector('[data-cart-estimated-total]');
+const whatsappOrderButton = document.querySelector('.whatsapp-order');
+const deliveryNeighborhood = document.querySelector('#delivery-neighborhood');
+const deliveryFeedback = document.querySelector('[data-delivery-feedback]');
+
+function populateFreeShippingNeighborhoods() {
+  const freeAreasList = document.querySelector('[data-delivery-free-areas]');
+  const firstPaidOption = Array.from(deliveryNeighborhood.options)
+    .find((option) => option.value === 'Palermo');
+  const options = document.createDocumentFragment();
+  const areas = document.createDocumentFragment();
+
+  FREE_SHIPPING_NEIGHBORHOODS.forEach((neighborhood) => {
+    const option = document.createElement('option');
+    option.value = neighborhood;
+    option.textContent = neighborhood;
+    options.append(option);
+
+    const area = document.createElement('li');
+    area.textContent = neighborhood;
+    areas.append(area);
+  });
+
+  deliveryNeighborhood.insertBefore(options, firstPaidOption);
+  freeAreasList.replaceChildren(areas);
+}
+
+function getShippingCost(neighborhood) {
+  if (!neighborhood) return null;
+  return FREE_SHIPPING_NEIGHBORHOODS.includes(neighborhood) ? 0 : FIXED_SHIPPING_COST;
+}
+
+function updateOrderSummary(items) {
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const itemCount = items.reduce((count, item) => count + item.quantity, 0);
+  const neighborhood = deliveryNeighborhood.value;
+  const shippingCost = getShippingCost(neighborhood);
+
+  cartOrderQuantity.textContent = `${itemCount} ${itemCount === 1 ? 'producto seleccionado' : 'productos seleccionados'}`;
+  cartOrderSubtotal.textContent = window.AllayCart.formatPrice(subtotal);
+  cartOrderShipping.textContent = shippingCost === null
+    ? 'Seleccioná barrio'
+    : shippingCost === 0
+      ? 'Gratis'
+      : window.AllayCart.formatPrice(shippingCost);
+  cartOrderEstimatedTotal.textContent = shippingCost === null
+    ? 'A confirmar'
+    : window.AllayCart.formatPrice(subtotal + shippingCost);
+  updateDeliveryFeedback(neighborhood);
+}
 
 function updateDeliveryFeedback(neighborhood) {
   if (!neighborhood) {
     deliveryFeedback.textContent = 'Seleccioná tu barrio para conocer la información de entrega.';
-  } else if (freeDeliveryNeighborhoods.has(neighborhood)) {
-    deliveryFeedback.textContent = '✅ Tu barrio tiene envío gratuito.';
+    deliveryFeedback.classList.remove('has-cost');
+  } else if (FREE_SHIPPING_NEIGHBORHOODS.includes(neighborhood)) {
+    deliveryFeedback.textContent = '✅ Envío gratis';
+    deliveryFeedback.classList.remove('has-cost');
   } else {
-    deliveryFeedback.textContent = 'ℹ️ El costo de envío será informado por WhatsApp.';
+    deliveryFeedback.textContent = '🚚 Costo estimado de entrega';
+    deliveryFeedback.classList.add('has-cost');
   }
 }
 
@@ -42,8 +95,9 @@ function restoreDeliveryNeighborhood() {
   }
 }
 
+populateFreeShippingNeighborhoods();
+
 deliveryNeighborhood.addEventListener('change', () => {
-  updateDeliveryFeedback(deliveryNeighborhood.value);
   try {
     if (deliveryNeighborhood.value) {
       localStorage.setItem(DELIVERY_STORAGE_KEY, deliveryNeighborhood.value);
@@ -52,6 +106,12 @@ deliveryNeighborhood.addEventListener('change', () => {
     }
   } catch (error) {
     console.error('No se pudo guardar el barrio de entrega.', error);
+  }
+
+  try {
+    updateOrderSummary(window.AllayCart.read());
+  } catch (error) {
+    console.error('No se pudo actualizar el resumen del pedido.', error);
   }
 });
 
@@ -84,10 +144,8 @@ function renderCart() {
       return;
     }
 
-    let total = 0;
     items.forEach((item) => {
       const lineTotal = item.price * item.quantity;
-      total += lineTotal;
 
       const row = document.createElement('article');
       row.className = 'cart-item';
@@ -142,9 +200,7 @@ function renderCart() {
       cartItemsContainer.append(row);
     });
 
-    const itemCount = items.reduce((count, item) => count + item.quantity, 0);
-    cartOrderQuantity.textContent = `${itemCount} ${itemCount === 1 ? 'producto seleccionado' : 'productos seleccionados'}`;
-    cartOrderTotal.textContent = window.AllayCart.formatPrice(total);
+    updateOrderSummary(items);
     cartOrderSummary.hidden = false;
     cartSummary.hidden = false;
     cartItemsContainer.setAttribute('aria-busy', 'false');
@@ -188,7 +244,9 @@ whatsappOrderButton.addEventListener('click', () => {
     const items = window.AllayCart.read();
     if (items.length === 0) return;
 
-    const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shippingCost = getShippingCost(deliveryNeighborhood.value);
+    const estimatedTotal = shippingCost === null ? null : subtotal + shippingCost;
     const lines = items.map((item) =>
       `• ${item.name} x${item.quantity} - ${window.AllayCart.formatPrice(item.price * item.quantity)}`
     );
@@ -199,9 +257,11 @@ whatsappOrderButton.addEventListener('click', () => {
       '',
       ...lines,
       '',
-      `Total: ${window.AllayCart.formatPrice(total)}`,
+      `Subtotal: ${window.AllayCart.formatPrice(subtotal)}`,
       '',
-      `Barrio de entrega: ${deliveryNeighborhood.value || 'Sin especificar'}`,
+      `Barrio: ${deliveryNeighborhood.value || 'Sin especificar'}`,
+      `Envío estimado: ${shippingCost === null ? 'A confirmar' : shippingCost === 0 ? 'Gratis' : window.AllayCart.formatPrice(shippingCost)}`,
+      `Total estimado: ${estimatedTotal === null ? 'A confirmar' : window.AllayCart.formatPrice(estimatedTotal)}`,
       '',
       'Muchas gracias.'
     ].join('\n');
