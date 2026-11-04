@@ -4,6 +4,58 @@ const cartOrderSummary = document.querySelector('[data-cart-order-summary]');
 const cartOrderQuantity = document.querySelector('[data-cart-quantity]');
 const cartOrderTotal = document.querySelector('[data-cart-order-total]');
 const whatsappOrderButton = document.querySelector('.whatsapp-order');
+const deliveryNeighborhood = document.querySelector('#delivery-neighborhood');
+const deliveryFeedback = document.querySelector('[data-delivery-feedback]');
+const DELIVERY_STORAGE_KEY = 'allay-delivery-neighborhood';
+const freeDeliveryNeighborhoods = new Set([
+  'Villa Urquiza',
+  'Saavedra',
+  'Belgrano',
+  'Villa Ortúzar',
+  'Parque Chas',
+  'Villa Pueyrredón'
+]);
+
+function updateDeliveryFeedback(neighborhood) {
+  if (!neighborhood) {
+    deliveryFeedback.textContent = 'Seleccioná tu barrio para conocer la información de entrega.';
+  } else if (freeDeliveryNeighborhoods.has(neighborhood)) {
+    deliveryFeedback.textContent = '✅ Tu barrio tiene envío gratuito.';
+  } else {
+    deliveryFeedback.textContent = 'ℹ️ El costo de envío será informado por WhatsApp.';
+  }
+}
+
+function restoreDeliveryNeighborhood() {
+  try {
+    const savedNeighborhood = localStorage.getItem(DELIVERY_STORAGE_KEY);
+    const hasOption = Array.from(deliveryNeighborhood.options)
+      .some((option) => option.value === savedNeighborhood);
+    if (savedNeighborhood && hasOption) deliveryNeighborhood.value = savedNeighborhood;
+    if (savedNeighborhood && !hasOption) {
+      console.warn('El barrio guardado no es una opción disponible.');
+    }
+    updateDeliveryFeedback(deliveryNeighborhood.value);
+  } catch (error) {
+    console.error('No se pudo recuperar el barrio de entrega.', error);
+    updateDeliveryFeedback('');
+  }
+}
+
+deliveryNeighborhood.addEventListener('change', () => {
+  updateDeliveryFeedback(deliveryNeighborhood.value);
+  try {
+    if (deliveryNeighborhood.value) {
+      localStorage.setItem(DELIVERY_STORAGE_KEY, deliveryNeighborhood.value);
+    } else {
+      localStorage.removeItem(DELIVERY_STORAGE_KEY);
+    }
+  } catch (error) {
+    console.error('No se pudo guardar el barrio de entrega.', error);
+  }
+});
+
+restoreDeliveryNeighborhood();
 
 function renderCart() {
   try {
@@ -148,6 +200,8 @@ whatsappOrderButton.addEventListener('click', () => {
       ...lines,
       '',
       `Total: ${window.AllayCart.formatPrice(total)}`,
+      '',
+      `Barrio de entrega: ${deliveryNeighborhood.value || 'Sin especificar'}`,
       '',
       'Muchas gracias.'
     ].join('\n');

@@ -58,6 +58,39 @@
           <div class="cart-items" data-cart-items aria-live="polite" aria-busy="true"></div>
           <aside class="cart-summary" data-cart-summary hidden>
             <p class="eyebrow">¿Todo listo?</p>
+            <section class="delivery-section" aria-labelledby="delivery-title">
+              <h2 id="delivery-title">🚚 Información de entrega</h2>
+              <p class="delivery-intro">Envío gratuito en:</p>
+              <ul class="delivery-free-areas">
+                <li>Villa Urquiza</li>
+                <li>Saavedra</li>
+                <li>Belgrano</li>
+                <li>Villa Ortúzar</li>
+                <li>Parque Chas</li>
+                <li>Villa Pueyrredón</li>
+              </ul>
+              <label for="delivery-neighborhood">¿En qué barrio querés recibir tu pedido?</label>
+              <select id="delivery-neighborhood" name="delivery-neighborhood">
+                <option value="">Seleccionar barrio</option>
+                <option>Villa Urquiza</option>
+                <option>Saavedra</option>
+                <option>Belgrano</option>
+                <option>Villa Ortúzar</option>
+                <option>Parque Chas</option>
+                <option>Villa Pueyrredón</option>
+                <option>Palermo</option>
+                <option>Colegiales</option>
+                <option>Chacarita</option>
+                <option>Caballito</option>
+                <option>Almagro</option>
+                <option>Villa Crespo</option>
+                <option>Recoleta</option>
+                <option>Otro</option>
+              </select>
+              <p class="delivery-feedback" data-delivery-feedback role="status" aria-live="polite">
+                Seleccioná tu barrio para conocer la información de entrega.
+              </p>
+            </section>
             <button class="button button-dark whatsapp-order" type="button"><span aria-hidden="true">📲</span> Confirmar y enviar por WhatsApp</button>
             <p class="cart-summary-note">Se abrirá WhatsApp para que revises el mensaje antes de enviarlo.</p>
           </aside>

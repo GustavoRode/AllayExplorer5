@@ -207,6 +207,14 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .cart-remove { padding: 0; border: 0; background: transparent; color: #8a4d3a; font: inherit; font-size: 11px; text-decoration: underline; cursor: pointer; }
 .cart-summary { position: sticky; top: 20px; padding: 22px; border: 1px solid var(--line); background: var(--paper); }
 .cart-summary[hidden] { display: none; }
+.delivery-section { margin: 18px 0; padding: 17px; border: 1px solid var(--line); background: var(--cream); }
+.delivery-section h2 { margin: 0 0 12px; font-family: var(--serif); font-size: 19px; font-weight: 500; }
+.delivery-intro { margin: 0 0 7px; color: var(--muted); font-size: 11px; }
+.delivery-free-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 12px; margin: 0 0 16px; padding-left: 18px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.delivery-section label { display: block; margin-bottom: 7px; color: var(--ink); font-size: 11px; font-weight: 600; line-height: 1.5; }
+.delivery-section select { width: 100%; min-height: 42px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); font: inherit; font-size: 12px; }
+.delivery-section select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.delivery-feedback { min-height: 17px; margin: 8px 0 0; color: var(--green); font-size: 11px; line-height: 1.5; }
 .whatsapp-order { width: 100%; min-height: 56px; justify-content: center; gap: 9px; border: 0; background: var(--green); color: #fffdf6; font-size: 12px; line-height: 1.45; text-align: center; cursor: pointer; }
 .whatsapp-order:hover { background: var(--ink); }
 .whatsapp-order span { font-size: 18px; }
