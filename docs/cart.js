@@ -71,10 +71,11 @@ function updateDeliveryFeedback(neighborhood) {
     deliveryFeedback.textContent = 'Seleccioná tu barrio para conocer la información de entrega.';
     deliveryFeedback.classList.remove('has-cost');
   } else if (FREE_SHIPPING_NEIGHBORHOODS.includes(neighborhood)) {
-    deliveryFeedback.textContent = '✅ Envío gratis';
+    deliveryFeedback.textContent = '✅ Envío gratis para tu zona';
     deliveryFeedback.classList.remove('has-cost');
   } else {
-    deliveryFeedback.textContent = '🚚 Costo estimado de entrega';
+    deliveryFeedback.textContent =
+      `🚚 Costo estimado de entrega: ${window.AllayCart.formatPrice(FIXED_SHIPPING_COST)}`;
     deliveryFeedback.classList.add('has-cost');
   }
 }

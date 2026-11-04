@@ -186,15 +186,14 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .quantity-value { min-width: 34px; text-align: center; font-size: 13px; font-weight: 600; }
 .cart-heading { margin: 0 0 34px; }
 .cart-heading h1 { margin-bottom: 0; }
-.cart-order-summary { display: grid; grid-template-columns: minmax(0, .8fr) minmax(200px, 1fr) minmax(230px, 1fr); gap: 26px; align-items: center; margin: 0 0 28px; padding: 24px 28px; border: 1px solid var(--line); background: var(--paper); }
+.cart-order-summary { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 18px 0; padding: 18px; border: 1px solid var(--line); background: var(--cream); }
 .cart-order-summary[hidden] { display: none; }
-.cart-order-summary-header .eyebrow { margin-bottom: 8px; }
-.cart-order-summary-header h2 { margin: 0; font-family: var(--serif); font-size: 30px; font-weight: 500; }
+.cart-order-summary-header h2 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 500; }
 .cart-order-summary-total p { margin: 0; color: var(--muted); font-size: 13px; }
 .cart-order-summary-total .cart-order-line { display: flex; justify-content: space-between; gap: 12px; margin-top: 7px; color: var(--muted); font-size: 12px; }
 .cart-order-line strong { color: var(--ink); font-weight: 600; }
-.cart-order-summary-total .cart-order-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line); color: var(--ink); font-size: 14px; font-weight: 700; }
-.cart-order-total strong { color: var(--green); font-size: 18px; }
+.cart-order-summary-total .cart-order-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 700; }
+.cart-order-total strong { color: var(--green); font-size: 22px; }
 .cart-order-summary-total .cart-order-summary-note { margin-top: 7px; color: var(--muted); font-size: 11px; }
 .cart-order-benefits { display: grid; gap: 7px; margin: 0; padding: 0; color: var(--green); font-size: 11px; list-style: none; }
 .cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; }

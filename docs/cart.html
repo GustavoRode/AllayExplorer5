@@ -36,30 +36,11 @@
         <a class="shop-back text-link" href="./products.html">← Volver a la vitrina</a>
         <div class="cart-heading">
           <p class="eyebrow"><span class="eyebrow-line"></span> Para compartir algo rico</p>
-          <h1>Tu pedido.</h1>
+          <h1>Detalle del pedido.</h1>
         </div>
-        <section class="cart-order-summary" data-cart-order-summary aria-labelledby="cart-order-title" hidden>
-          <div class="cart-order-summary-header">
-            <p class="eyebrow">Resumen de compra</p>
-            <h2 id="cart-order-title">Mi Pedido</h2>
-          </div>
-          <div class="cart-order-summary-total">
-            <p data-cart-quantity></p>
-            <p class="cart-order-line">Subtotal: <strong data-cart-subtotal></strong></p>
-            <p class="cart-order-line">Envío: <strong data-cart-shipping></strong></p>
-            <p class="cart-order-total">Total estimado: <strong data-cart-estimated-total></strong></p>
-            <p class="cart-order-summary-note">Revisá tu pedido antes de enviarlo.</p>
-          </div>
-          <ul class="cart-order-benefits" aria-label="Características del pedido">
-            <li>✓ Elaboración artesanal</li>
-            <li>✓ Productos sin gluten</li>
-            <li>✓ Pedido por WhatsApp</li>
-          </ul>
-        </section>
         <div class="cart-layout">
           <div class="cart-items" data-cart-items aria-live="polite" aria-busy="true"></div>
           <aside class="cart-summary" data-cart-summary hidden>
-            <p class="eyebrow">¿Todo listo?</p>
             <section class="delivery-section" aria-labelledby="delivery-title">
               <h2 id="delivery-title">🚚 Información de entrega</h2>
               <p class="delivery-intro">Envío gratuito en:</p>
@@ -79,6 +60,23 @@
               <p class="delivery-feedback" data-delivery-feedback role="status" aria-live="polite">
                 Seleccioná tu barrio para conocer la información de entrega.
               </p>
+            </section>
+            <section class="cart-order-summary" data-cart-order-summary aria-labelledby="cart-order-title" hidden>
+              <div class="cart-order-summary-header">
+                <h2 id="cart-order-title">Resumen del pedido</h2>
+              </div>
+              <div class="cart-order-summary-total">
+                <p data-cart-quantity></p>
+                <p class="cart-order-line">Subtotal: <strong data-cart-subtotal></strong></p>
+                <p class="cart-order-line">Envío: <strong data-cart-shipping></strong></p>
+                <p class="cart-order-total">Total estimado: <strong data-cart-estimated-total></strong></p>
+                <p class="cart-order-summary-note">Revisá tu pedido antes de enviarlo.</p>
+              </div>
+              <ul class="cart-order-benefits" aria-label="Características del pedido">
+                <li>✓ Elaboración artesanal</li>
+                <li>✓ Productos sin gluten</li>
+                <li>✓ Pedido por WhatsApp</li>
+              </ul>
             </section>
             <button class="button button-dark whatsapp-order" type="button"><span aria-hidden="true">📲</span> Confirmar y enviar por WhatsApp</button>
             <p class="cart-summary-note">Se abrirá WhatsApp para que revises el mensaje antes de enviarlo.</p>
