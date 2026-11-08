@@ -14,9 +14,20 @@ function updateProductMetadata(product) {
   const description = product.metaDescription || product.shortDescription || product.description;
   document.title = title;
   document.querySelector('meta[name="description"]').content = description;
-  document.querySelector('meta[property="og:title"]').content = title;
-  document.querySelector('meta[property="og:description"]').content = description;
-  document.querySelector('meta[property="og:image"]').content = product.imageUrl;
+  const socialMetadata = {
+    'og:title': title,
+    'og:description': description,
+    'og:image': product.imageUrl,
+    'twitter:title': title,
+    'twitter:description': description,
+    'twitter:image': product.imageUrl
+  };
+  Object.entries(socialMetadata).forEach(([name, content]) => {
+    const selector = name.startsWith('og:')
+      ? `meta[property="${name}"]`
+      : `meta[name="${name}"]`;
+    document.querySelector(selector).content = content;
+  });
 
   const canonicalUrl = new URL('./product.html', window.location.href);
   canonicalUrl.searchParams.set('slug', product.slug);
