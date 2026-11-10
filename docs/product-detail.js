@@ -9,18 +9,38 @@ function showProductError(message) {
   detailContainer.setAttribute('aria-busy', 'false');
 }
 
+function sanitizeUrl(value) {
+  const parsedHtml = new DOMParser().parseFromString(value, 'text/html');
+  const anchor = parsedHtml.querySelector('a[href]');
+  const urlValue = anchor
+    ? anchor.getAttribute('href')
+    : parsedHtml.body.textContent;
+
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(urlValue.trim());
+  } catch {
+    throw new Error('La URL de imagen del producto debe ser absoluta.');
+  }
+  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+    throw new Error('La URL de imagen del producto debe usar HTTP o HTTPS.');
+  }
+  return parsedUrl.href;
+}
+
 function updateProductMetadata(product) {
   const title = product.metaTitle || `${product.name} — Allay`;
   const description = product.metaDescription || product.shortDescription || product.description;
+  const imageUrl = sanitizeUrl(product.imageUrl);
   document.title = title;
   document.querySelector('meta[name="description"]').content = description;
   const socialMetadata = {
     'og:title': title,
     'og:description': description,
-    'og:image': product.imageUrl,
+    'og:image': imageUrl,
     'twitter:title': title,
     'twitter:description': description,
-    'twitter:image': product.imageUrl
+    'twitter:image': imageUrl
   };
   Object.entries(socialMetadata).forEach(([name, content]) => {
     const selector = name.startsWith('og:')
@@ -45,7 +65,7 @@ function updateProductMetadata(product) {
     '@type': 'Product',
     name: product.name,
     description,
-    image: product.imageUrl,
+    image: imageUrl,
     sku: product.sku,
     category: product.category,
     brand: { '@type': 'Brand', name: 'Allay' },
@@ -91,7 +111,7 @@ async function shareProduct(product, feedback) {
 function renderProduct(product) {
   const image = document.createElement('img');
   image.className = 'product-detail-image';
-  image.src = product.imageUrl;
+  image.src = sanitizeUrl(product.imageUrl);
   image.alt = product.imageAlt || product.name;
 
   const content = document.createElement('div');
