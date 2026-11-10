@@ -23,6 +23,49 @@ function escapeHtml(value) {
   })[character]);
 }
 
+function sanitizeUrl(value) {
+  if (typeof value !== 'string') {
+    throw new Error('El valor debe contener una URL absoluta HTTP o HTTPS.');
+  }
+
+  const anchor = value.match(/<a\b[^>]*\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))[^>]*>/i);
+  let urlValue = anchor
+    ? (anchor[1] ?? anchor[2] ?? anchor[3])
+    : value.replace(/<[^>]*>/g, '');
+
+  urlValue = urlValue
+    .replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt);/gi, (entity, value) => {
+      if (value[0] !== '#') {
+        return {
+          amp: '&',
+          quot: '"',
+          apos: "'",
+          lt: '<',
+          gt: '>'
+        }[value.toLowerCase()];
+      }
+
+      const codePoint = value[1].toLowerCase() === 'x'
+        ? Number.parseInt(value.slice(2), 16)
+        : Number.parseInt(value.slice(1), 10);
+      return codePoint <= 0x10ffff && !(codePoint >= 0xd800 && codePoint <= 0xdfff)
+        ? String.fromCodePoint(codePoint)
+        : entity;
+    })
+    .trim();
+
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(urlValue);
+  } catch {
+    throw new Error('El valor debe contener una URL absoluta HTTP o HTTPS.');
+  }
+  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+    throw new Error('El valor debe contener una URL absoluta HTTP o HTTPS.');
+  }
+  return parsedUrl.href;
+}
+
 function escapeJsonForHtml(value) {
   return JSON.stringify(value, null, 2).replace(/</g, '\\u003c');
 }
@@ -60,14 +103,10 @@ function validateProducts(products) {
       throw new Error(`${label}: la moneda debe usar un código ISO de tres letras.`);
     }
 
-    let imageUrl;
     try {
-      imageUrl = new URL(product.imageUrl);
+      sanitizeUrl(product.imageUrl);
     } catch {
       throw new Error(`${label}: imageUrl debe ser una URL absoluta.`);
-    }
-    if (!['http:', 'https:'].includes(imageUrl.protocol)) {
-      throw new Error(`${label}: imageUrl debe usar HTTP o HTTPS.`);
     }
   }
 }
@@ -79,7 +118,7 @@ function getProductStructuredData(product, canonicalUrl, description) {
     '@type': 'Product',
     name: product.name,
     description,
-    image: product.imageUrl,
+    image: sanitizeUrl(product.imageUrl),
     ...(product.sku ? { sku: product.sku } : {}),
     ...(product.category ? { category: product.category } : {}),
     brand: { '@type': 'Brand', name: 'ALLAY' },
@@ -93,13 +132,14 @@ function getProductStructuredData(product, canonicalUrl, description) {
       ...(availability
         ? { availability: `https://schema.org/${availability}` }
         : {}),
-      url: canonicalUrl
+      url: sanitizeUrl(canonicalUrl)
     }
   };
 }
 
 function renderProduct(template, product, siteUrl) {
-  const canonicalUrl = `${siteUrl}/productos/${product.slug}.html`;
+  const canonicalUrl = sanitizeUrl(`${siteUrl}/productos/${product.slug}.html`);
+  const imageUrl = sanitizeUrl(product.imageUrl);
   const title = product.metaTitle || `${product.name} | ALLAY`;
   const description = product.metaDescription || product.shortDescription || product.description;
   const imageAlt = product.imageAlt || product.name;
@@ -115,7 +155,7 @@ function renderProduct(template, product, siteUrl) {
     TITLE: escapeHtml(title),
     META_DESCRIPTION: escapeHtml(description),
     CANONICAL_URL: escapeHtml(canonicalUrl),
-    IMAGE_URL: escapeHtml(product.imageUrl),
+    IMAGE_URL: escapeHtml(imageUrl),
     NAME: escapeHtml(product.name),
     IMAGE_ALT: escapeHtml(imageAlt),
     DESCRIPTION: escapeHtml(product.description),
@@ -171,7 +211,11 @@ async function main() {
   console.log(`Se generaron ${pages.length} fichas en docs/productos/.`);
 }
 
-main().catch((error) => {
-  console.error(`No se pudieron generar las fichas: ${error.message}`);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(`No se pudieron generar las fichas: ${error.message}`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { sanitizeUrl };
