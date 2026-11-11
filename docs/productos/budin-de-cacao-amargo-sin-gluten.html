@@ -137,8 +137,6 @@ Pedidos por WhatsApp con anticipación.</p>
         try {
           if (typeof navigator.share === 'function') {
             await navigator.share({
-              title: currentProduct.name,
-              text: 'Producto artesanal sin gluten de Allay',
               url: window.location.href
             });
             return;
