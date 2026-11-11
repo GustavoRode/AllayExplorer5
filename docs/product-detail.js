@@ -49,8 +49,7 @@ function updateProductMetadata(product) {
     document.querySelector(selector).content = content;
   });
 
-  const canonicalUrl = new URL('./product.html', window.location.href);
-  canonicalUrl.searchParams.set('slug', product.slug);
+  const canonicalUrl = new URL(`./productos/${product.slug}.html`, window.location.href);
   document.querySelector('link[rel="canonical"]').href = canonicalUrl.toString();
   document.querySelector('meta[property="og:url"]').content = canonicalUrl.toString();
 

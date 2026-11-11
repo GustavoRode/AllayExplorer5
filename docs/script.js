@@ -32,9 +32,7 @@ function getProductCode(product) {
 }
 
 function getProductUrl(product) {
-  const url = new URL('./product.html', window.location.href);
-  url.searchParams.set('slug', product.slug);
-  return url.toString();
+  return `productos/${product.slug}.html`;
 }
 
 function readCart() {
