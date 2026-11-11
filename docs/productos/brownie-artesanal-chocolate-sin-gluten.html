@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6f2e9">
+    <base href="../">
     <meta name="description" content="Brownie artesanal de chocolate, húmedo por dentro y levemente crocante por fuera. Sin gluten, en 8 o 22 cm, con o sin nueces. Consultá por WhatsApp.">
     <meta property="og:type" content="product">
     <meta property="og:site_name" content="ALLAY">
@@ -20,11 +21,12 @@
     <meta name="twitter:image" content="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792639358/BRW-4001-brownie_dr52wi.webp">
     <title>Brownie artesanal de chocolate sin gluten | ALLAY</title>
     <link rel="canonical" href="https://gustavorode.github.io/AllayExplorer5/productos/brownie-artesanal-chocolate-sin-gluten.html">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Product",
@@ -54,38 +56,160 @@
       <span>100% libre de gluten</span>
     </div>
     <header class="site-header">
-      <a class="wordmark" href="../index.html" aria-label="ALLAY, inicio">
-        <img class="wordmark-logo" src="../images/Allay_logo-04_f6f2e9.webp" alt="ALLAY, pastelería sin gluten">
+      <a class="wordmark" href="index.html" aria-label="ALLAY, inicio">
+        <img class="wordmark-logo" src="images/Allay_logo-04_f6f2e9.webp" alt="ALLAY, pastelería sin gluten">
       </a>
       <div class="header-actions">
-        <a class="header-cta" href="../products.html">La vitrina</a>
+        <a class="header-cta" href="products.html">La vitrina</a>
       </div>
     </header>
     <main>
       <section class="shop-section section-wrap">
-        <a class="shop-back text-link" href="../products.html">← Volver a la vitrina</a>
+        <a class="shop-back text-link" href="products.html">← Volver a la vitrina</a>
         <article class="product-detail">
           <img class="product-detail-image" src="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792639358/BRW-4001-brownie_dr52wi.webp" alt="Porciones de brownie de chocolate; algunas llevan nueces, sobre una bandeja.">
           <div class="product-detail-content">
             <p class="eyebrow"><span class="eyebrow-line"></span> Hecho a mano, para disfrutar</p>
             <h1>Brownie Artesanal de Chocolate Sin Gluten</h1>
             <p class="product-detail-price"><data value="7000">$ 7.000</data></p>
+            <p class="product-detail-code" id="product-code"></p>
+            <div class="product-share">
+              <button class="product-share-button" id="share-product" type="button" aria-label="Compartir producto" disabled>
+                <span aria-hidden="true">↗</span> Compartir producto
+              </button>
+              <span class="product-share-feedback" id="share-feedback" role="status" aria-live="polite"></span>
+            </div>
             <p class="product-detail-description">Intenso, húmedo y bien chocolatoso 🍫
 Nuestro brownie artesanal se hornea en pequeños lotes para lograr esa textura suave por dentro y ligeramente crocante por fuera que lo hace irresistible. Elaborado con chocolate real y apto para celíacos (sin gluten), es perfecto para celebraciones, regalos o darte un gusto.
 
 Presentaciones: 8 cm (individual) y 22 cm (para compartir)
 Opciones: con nueces o sin nueces
 Pedidos por WhatsApp con anticipación.</p>
+            <p class="product-gluten" id="product-gluten" hidden>✳ 100% libre de gluten</p>
+            <div class="product-detail-actions">
+              <div class="quantity-control" aria-label="Cantidad">
+                <button id="decrement-quantity" type="button" aria-label="Restar una unidad">−</button>
+                <span class="quantity-value" id="quantity-value" aria-live="polite">1</span>
+                <button id="increment-quantity" type="button" aria-label="Sumar una unidad">+</button>
+              </div>
+              <button class="button button-dark" id="add-to-order" type="button" disabled>Agregar al pedido</button>
+            </div>
+            <p class="catalog-error" id="product-load-error" role="status" hidden></p>
           </div>
         </article>
+        <section class="product-recommendations" data-product-recommendations aria-labelledby="product-recommendations-title" hidden>
+          <div class="product-recommendations-heading">
+            <h2 id="product-recommendations-title">También te puede gustar</h2>
+            <p>Otros productos artesanales que suelen elegirse junto a este.</p>
+          </div>
+          <div class="product-grid catalog-grid" data-recommendation-grid></div>
+        </section>
       </section>
     </main>
     <footer class="site-footer">
-      <a class="wordmark footer-wordmark" href="../index.html" aria-label="ALLAY, volver al inicio">
-        <img class="wordmark-logo" src="../images/Allay_logo-04_f6f2e9.webp" alt="ALLAY">
+      <a class="wordmark footer-wordmark" href="index.html" aria-label="ALLAY, volver al inicio">
+        <img class="wordmark-logo" src="images/Allay_logo-04_f6f2e9.webp" alt="ALLAY">
       </a>
       <p>Hecho con amor, sin gluten. <span>© 2026 ALLAY</span></p>
-      <div class="footer-actions"><a class="footer-social" href="../products.html">La vitrina</a></div>
+      <div class="footer-actions"><a class="footer-social" href="products.html">La vitrina</a></div>
     </footer>
+    <script>
+      const quantityValue = document.querySelector('#quantity-value');
+      const decrementButton = document.querySelector('#decrement-quantity');
+      const incrementButton = document.querySelector('#increment-quantity');
+      const addButton = document.querySelector('#add-to-order');
+      const shareButton = document.querySelector('#share-product');
+      const shareFeedback = document.querySelector('#share-feedback');
+      const loadError = document.querySelector('#product-load-error');
+      let quantity = 1;
+      let currentProduct;
+
+      function updateQuantity(nextQuantity) {
+        quantity = Math.max(1, nextQuantity);
+        quantityValue.textContent = String(quantity);
+      }
+
+      function updateOrderLink() {
+        const count = document.querySelector('.cart-fab-count');
+        if (count) count.textContent = count.textContent.replace(/^Pedido/, 'Ver pedido');
+      }
+
+      async function shareCurrentProduct() {
+        try {
+          if (typeof navigator.share === 'function') {
+            await navigator.share({
+              title: currentProduct.name,
+              text: 'Producto artesanal sin gluten de Allay',
+              url: window.location.href
+            });
+            return;
+          }
+          await navigator.clipboard.writeText(window.location.href);
+          shareFeedback.textContent = '✅ Enlace copiado';
+          window.setTimeout(() => { shareFeedback.textContent = ''; }, 2000);
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+          console.error('No se pudo compartir el producto.', error);
+          shareFeedback.textContent = typeof navigator.share === 'function'
+            ? 'No se pudo compartir el producto.'
+            : 'No se pudo copiar el enlace.';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        updateOrderLink();
+        window.addEventListener('allay:cart-updated', updateOrderLink);
+        window.addEventListener('storage', updateOrderLink);
+
+        decrementButton.addEventListener('click', () => updateQuantity(quantity - 1));
+        incrementButton.addEventListener('click', () => updateQuantity(quantity + 1));
+        shareButton.addEventListener('click', shareCurrentProduct);
+        addButton.addEventListener('click', () => {
+          try {
+            window.AllayCart.add(currentProduct, quantity);
+            addButton.textContent = 'Agregado al pedido';
+            window.setTimeout(() => { addButton.textContent = 'Agregar al pedido'; }, 1800);
+          } catch (error) {
+            console.error('No se pudo agregar el producto al pedido.', error);
+            addButton.textContent = 'No se pudo agregar';
+          }
+        });
+
+        try {
+          const products = await window.AllayProducts.load();
+          const slug = decodeURIComponent(window.location.pathname.split('/').pop())
+            .replace(/\.html$/, '');
+          currentProduct = products.find((product) => product.slug === slug);
+          if (!currentProduct) throw new Error(`No se encontró el producto "${slug}".`);
+
+          addButton.disabled = false;
+          shareButton.disabled = false;
+          document.querySelector('#product-code').textContent =
+            `Código: ${window.AllayCart.getProductCode(currentProduct)}`;
+          document.querySelector('#product-gluten').hidden = !currentProduct.glutenFree;
+          window.AllayProducts.renderRecommendations(currentProduct, products);
+
+          const productsByDisplayName = new Map(
+            products.map((product) => [product.displayName, product])
+          );
+          document.querySelectorAll('[data-recommendation-grid] .product-card').forEach((card) => {
+            const displayName = card.querySelector('img')?.dataset.displayName;
+            const product = productsByDisplayName.get(displayName);
+            if (!product) throw new Error('No se pudo resolver el enlace de una recomendación.');
+            card.querySelectorAll('a').forEach((link) => {
+              link.href = `productos/${product.slug}.html`;
+            });
+          });
+        } catch (error) {
+          console.error('No se pudo preparar la ficha del producto.', error);
+          loadError.textContent = 'No pudimos preparar el pedido. Probá recargar la página.';
+          loadError.hidden = false;
+          addButton.disabled = true;
+          shareButton.disabled = true;
+          decrementButton.disabled = true;
+          incrementButton.disabled = true;
+        }
+      });
+    </script>
   </body>
 </html>
