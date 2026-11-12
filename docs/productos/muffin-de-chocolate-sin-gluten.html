@@ -67,7 +67,10 @@
       <section class="shop-section section-wrap">
         <a class="shop-back text-link" href="products.html">← Volver a la vitrina</a>
         <article class="product-detail">
-          <img class="product-detail-image" src="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792640786/MUF-1100-muffin_de_chocolate_aghtme.webp" alt="Muffin de chocolate con chips, servido en un plato estampado.">
+          <div class="product-gallery" data-product-gallery>
+            <img class="product-detail-image" src="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792640786/MUF-1100-muffin_de_chocolate_aghtme.webp" alt="Muffin de chocolate con chips, servido en un plato estampado." data-gallery-main>
+            <div class="product-gallery-thumbnails" data-gallery-thumbnails hidden></div>
+          </div>
           <div class="product-detail-content">
             <p class="eyebrow"><span class="eyebrow-line"></span> Hecho a mano, para disfrutar</p>
             <h1>Muffin de Chocolate con Chips Sin Gluten</h1>
@@ -179,6 +182,10 @@ Pedidos por WhatsApp con anticipación.</p>
           currentProduct = products.find((product) => product.slug === slug);
           if (!currentProduct) throw new Error(`No se encontró el producto "${slug}".`);
 
+          window.AllayProducts.renderProductGallery(
+            document.querySelector('[data-product-gallery]'),
+            currentProduct
+          );
           addButton.disabled = false;
           shareButton.disabled = false;
           document.querySelector('#product-code').textContent =

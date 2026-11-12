@@ -7,6 +7,10 @@
     "name": "Budín de Vainilla con Chips de Chocolate Sin Gluten",
     "displayName": "BUD-0100-budin_vainilla_con_chips_de_chocolate_mqlogi",
     "imageUrl": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1792606242/BUD-0100-budin_vainilla_con_chips_de_chocolate_mqlogi.webp",
+    "images": [
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794504476/BUD-0100-budin_de_vainilla_con_chips_de_chocolate_f-0001_jpjinv.webp",
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794504493/BUD-0100-budin_de_vainilla_con_chips_de_chocolate_f-0002_c697qz.webp"
+    ],
     "imageAlt": "Budín de vainilla cortado, con chips de chocolate semiamargo visibles en la miga.",
     "metaTitle": "Budín de vainilla con chips de chocolate sin gluten | ALLAY",
     "metaDescription": "Budín de vainilla con chips de chocolate semiamargo, húmedo y esponjoso. Sin gluten, presentación de 740 g. Hacé tu pedido por WhatsApp.",
@@ -74,6 +78,11 @@
     "name": "Budín de Limón Sin Gluten",
     "displayName": "BUD-0300-budin_de_limon_snhi2i",
     "imageUrl": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1792639069/BUD-0300-budin_de_limon_snhi2i.webp",
+    "images": [
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794506187/BUD-0300-budin_de_limon_f-0001_kbauzy.webp",
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794506316/BUD-0300-budin_de_limon_f-0002_fbzihj.webp",
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794506389/BUD-0300-budin_de_limon_f-0003_j0tomq.webp"
+    ],
     "imageAlt": "Budín de limón con cobertura de glasé blanco y ralladura cítrica.",
     "metaTitle": "Budín de limón sin gluten con glasé | ALLAY",
     "metaDescription": "Budín artesanal de limón con glasé suave y ralladura fresca, de miga húmeda y esponjosa. Sin gluten, presentación de 740 g. Pedilo por WhatsApp.",
@@ -295,6 +304,10 @@
     "name": "Muffin de Chocolate con Chips Sin Gluten",
     "displayName": "MUF-1100-muffin_de_chocolate_aghtme",
     "imageUrl": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1792640786/MUF-1100-muffin_de_chocolate_aghtme.webp",
+    "images": [
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794507522/MUF-1100-muffin_de_chocolate_f-0001_qq8ggs.webp",
+      "https://res.cloudinary.com/dwvi0c49z/image/upload/v1794507566/MUF-1100-muffin_de_chocolate_f-0002_hbmq08.webp"
+    ],
     "imageAlt": "Muffin de chocolate con chips, servido en un plato estampado.",
     "metaTitle": "Muffin de chocolate con chips sin gluten | ALLAY",
     "metaDescription": "Muffin de chocolate con chips, de textura tierna y elaborado sin gluten. Disponible por unidad. Consultá disponibilidad por WhatsApp.",

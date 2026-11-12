@@ -9,29 +9,10 @@ function showProductError(message) {
   detailContainer.setAttribute('aria-busy', 'false');
 }
 
-function sanitizeUrl(value) {
-  const parsedHtml = new DOMParser().parseFromString(value, 'text/html');
-  const anchor = parsedHtml.querySelector('a[href]');
-  const urlValue = anchor
-    ? anchor.getAttribute('href')
-    : parsedHtml.body.textContent;
-
-  let parsedUrl;
-  try {
-    parsedUrl = new URL(urlValue.trim());
-  } catch {
-    throw new Error('La URL de imagen del producto debe ser absoluta.');
-  }
-  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
-    throw new Error('La URL de imagen del producto debe usar HTTP o HTTPS.');
-  }
-  return parsedUrl.href;
-}
-
 function updateProductMetadata(product) {
   const title = product.metaTitle || `${product.name} — Allay`;
   const description = product.metaDescription || product.shortDescription || product.description;
-  const imageUrl = sanitizeUrl(product.imageUrl);
+  const imageUrl = window.AllayProducts.sanitizeImageUrl(product.imageUrl);
   document.title = title;
   document.querySelector('meta[name="description"]').content = description;
   const socialMetadata = {
@@ -108,10 +89,21 @@ async function shareProduct(product, feedback) {
 }
 
 function renderProduct(product) {
+  const gallery = document.createElement('div');
+  gallery.className = 'product-gallery';
+  gallery.dataset.productGallery = '';
+
   const image = document.createElement('img');
   image.className = 'product-detail-image';
-  image.src = sanitizeUrl(product.imageUrl);
+  image.src = window.AllayProducts.sanitizeImageUrl(product.imageUrl);
   image.alt = product.imageAlt || product.name;
+  image.dataset.galleryMain = '';
+
+  const thumbnails = document.createElement('div');
+  thumbnails.className = 'product-gallery-thumbnails';
+  thumbnails.dataset.galleryThumbnails = '';
+  gallery.append(image, thumbnails);
+  window.AllayProducts.renderProductGallery(gallery, product);
 
   const content = document.createElement('div');
   content.className = 'product-detail-content';
@@ -207,7 +199,7 @@ function renderProduct(product) {
   content.append(eyebrow, name, price, code, shareAction, description);
   if (product.glutenFree) content.append(gluten);
   content.append(controls);
-  detailContainer.replaceChildren(image, content);
+  detailContainer.replaceChildren(gallery, content);
   detailContainer.setAttribute('aria-busy', 'false');
 }
 
@@ -235,6 +227,9 @@ async function loadProductDetail() {
     }
     if (typeof product.name !== 'string' || typeof product.sku !== 'string' ||
       typeof product.displayName !== 'string' || typeof product.imageUrl !== 'string' ||
+      (product.images !== undefined &&
+        (!Array.isArray(product.images) ||
+          product.images.some((image) => typeof image !== 'string' || !image.trim()))) ||
       typeof product.description !== 'string' || typeof product.slug !== 'string' ||
       typeof product.imageAlt !== 'string' || typeof product.metaTitle !== 'string' ||
       typeof product.metaDescription !== 'string' || typeof product.currency !== 'string' ||

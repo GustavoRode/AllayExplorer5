@@ -67,7 +67,10 @@
       <section class="shop-section section-wrap">
         <a class="shop-back text-link" href="products.html">← Volver a la vitrina</a>
         <article class="product-detail">
-          <img class="product-detail-image" src="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792641295/MUF-1210-muffin_de_manzana_nyillv.webp" alt="Muffins de manzana con crumble, acompañados de trozos de manzana.">
+          <div class="product-gallery" data-product-gallery>
+            <img class="product-detail-image" src="https://res.cloudinary.com/dwvi0c49z/image/upload/v1792641295/MUF-1210-muffin_de_manzana_nyillv.webp" alt="Muffins de manzana con crumble, acompañados de trozos de manzana." data-gallery-main>
+            <div class="product-gallery-thumbnails" data-gallery-thumbnails hidden></div>
+          </div>
           <div class="product-detail-content">
             <p class="eyebrow"><span class="eyebrow-line"></span> Hecho a mano, para disfrutar</p>
             <h1>Muffin de Manzana y Canela con Crumble Sin Gluten</h1>
@@ -179,6 +182,10 @@ Pedidos por WhatsApp con anticipación.</p>
           currentProduct = products.find((product) => product.slug === slug);
           if (!currentProduct) throw new Error(`No se encontró el producto "${slug}".`);
 
+          window.AllayProducts.renderProductGallery(
+            document.querySelector('[data-product-gallery]'),
+            currentProduct
+          );
           addButton.disabled = false;
           shareButton.disabled = false;
           document.querySelector('#product-code').textContent =

@@ -35,6 +35,74 @@ function getProductUrl(product) {
   return `productos/${product.slug}.html`;
 }
 
+function sanitizeProductImageUrl(value) {
+  const parsedHtml = new DOMParser().parseFromString(value, 'text/html');
+  const anchor = parsedHtml.querySelector('a[href]');
+  const urlValue = anchor
+    ? anchor.getAttribute('href')
+    : parsedHtml.body.textContent;
+
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(urlValue.trim());
+  } catch {
+    throw new Error('La URL de imagen del producto debe ser absoluta.');
+  }
+  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+    throw new Error('La URL de imagen del producto debe usar HTTP o HTTPS.');
+  }
+  return parsedUrl.href;
+}
+
+function getProductImageUrls(product) {
+  const imageUrls = [product.imageUrl, ...(product.images || [])]
+    .map(sanitizeProductImageUrl);
+  return [...new Set(imageUrls)];
+}
+
+function renderProductGallery(gallery, product) {
+  const mainImage = gallery.querySelector('[data-gallery-main]');
+  const thumbnails = gallery.querySelector('[data-gallery-thumbnails]');
+  if (!mainImage || !thumbnails) {
+    throw new Error('La galería del producto no tiene la estructura esperada.');
+  }
+
+  const imageUrls = getProductImageUrls(product);
+  mainImage.src = imageUrls[0];
+  thumbnails.replaceChildren();
+  thumbnails.hidden = imageUrls.length < 2;
+  if (thumbnails.hidden) return;
+
+  thumbnails.replaceChildren(...imageUrls.map((imageUrl, index) => {
+    const thumbnailButton = document.createElement('button');
+    thumbnailButton.className = 'product-gallery-thumbnail';
+    thumbnailButton.type = 'button';
+    thumbnailButton.dataset.imageUrl = imageUrl;
+    thumbnailButton.setAttribute('aria-label', `Ver imagen ${index + 1} de ${imageUrls.length}`);
+    thumbnailButton.setAttribute('aria-pressed', String(index === 0));
+    if (index === 0) thumbnailButton.classList.add('is-active');
+
+    const thumbnailImage = document.createElement('img');
+    thumbnailImage.src = imageUrl;
+    thumbnailImage.alt = '';
+    thumbnailImage.loading = 'lazy';
+    thumbnailButton.append(thumbnailImage);
+    return thumbnailButton;
+  }));
+
+  gallery.addEventListener('click', (event) => {
+    const thumbnailButton = event.target.closest('.product-gallery-thumbnail');
+    if (!thumbnailButton || !gallery.contains(thumbnailButton)) return;
+
+    mainImage.src = thumbnailButton.dataset.imageUrl;
+    thumbnails.querySelectorAll('.product-gallery-thumbnail').forEach((thumbnail) => {
+      const isActive = thumbnail === thumbnailButton;
+      thumbnail.classList.toggle('is-active', isActive);
+      thumbnail.setAttribute('aria-pressed', String(isActive));
+    });
+  });
+}
+
 function readCart() {
   const storedCart = localStorage.getItem(CART_STORAGE_KEY);
   if (storedCart === null) return [];
@@ -200,6 +268,9 @@ function validateProducts(products) {
     !product || typeof product.id !== 'string' || typeof product.sku !== 'string' ||
     typeof product.slug !== 'string' || !product.slug || typeof product.name !== 'string' ||
     typeof product.displayName !== 'string' || typeof product.imageUrl !== 'string' ||
+    (product.images !== undefined &&
+      (!Array.isArray(product.images) ||
+        product.images.some((image) => typeof image !== 'string' || !image.trim()))) ||
     typeof product.description !== 'string' || !Number.isFinite(product.price) ||
     typeof product.msgCTA !== 'string' || typeof product.imageAlt !== 'string' ||
     typeof product.shortDescription !== 'string' || typeof product.currency !== 'string' ||
@@ -259,7 +330,9 @@ function renderProductRecommendations(product, products) {
 
 window.AllayProducts = {
   load: loadProductData,
-  renderRecommendations: renderProductRecommendations
+  renderRecommendations: renderProductRecommendations,
+  renderProductGallery,
+  sanitizeImageUrl: sanitizeProductImageUrl
 };
 
 async function loadProducts() {

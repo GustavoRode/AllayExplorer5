@@ -108,6 +108,19 @@ function validateProducts(products) {
     } catch {
       throw new Error(`${label}: imageUrl debe ser una URL absoluta.`);
     }
+
+    if (product.images !== undefined &&
+      (!Array.isArray(product.images) ||
+        product.images.some((image) => typeof image !== 'string' || !image.trim()))) {
+      throw new Error(`${label}: images debe ser una lista de URLs de imagen.`);
+    }
+    for (const image of product.images || []) {
+      try {
+        sanitizeUrl(image);
+      } catch {
+        throw new Error(`${label}: cada elemento de images debe ser una URL absoluta.`);
+      }
+    }
   }
 }
 
